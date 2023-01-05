@@ -15,7 +15,7 @@ public class Program {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 		System.out.print("Número do Quarto: ");
-		int number = sc.nextInt(); 
+		int number = sc.nextInt();
 		System.out.print("Check-in data (dd/MM/yyyy): ");
 		Date checkIn = sdf.parse(sc.next());
 		System.out.print("Check-out data (dd/MM/yyyy): ");
@@ -35,15 +35,14 @@ public class Program {
 			System.out.print("Check-out data (dd/MM/yyyy): ");
 			checkOut = sdf.parse(sc.next());
 
-			Date now = new Date();
-			if (checkIn.before(now) || checkOut.before(now)) {
-				System.out.println("Erro na reserva ");
-			} else if (!checkOut.after(checkIn)) {
-				System.out.println("Erro na reserva");
-			} else {
-				reserva.updateDates(checkIn, checkOut);
+			String erro = reserva.updateDates(checkIn, checkOut);
+			if(erro != null) {
+				System.out.println("Erro em reserva: " + erro);
+			}
+			else {
 				System.out.println("Reserva: " + reserva);
 			}
+			
 
 		}
 
